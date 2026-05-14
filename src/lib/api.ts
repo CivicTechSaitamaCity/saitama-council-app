@@ -1,6 +1,6 @@
 import type { ApiTopicsResponse, ApiMinutesResponse, Bill } from '../types';
 
-const BASE = '/api';
+const BASE = 'https://asia-northeast1-civictec-saitama.cloudfunctions.net';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function normalizeBill(b: any): Bill {
