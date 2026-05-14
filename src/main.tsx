@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './style.css'
 import { TopicSearch } from './components/TopicSearch'
-import { IssueList } from './components/IssueList'
-import { SolutionList } from './components/SolutionList'
-import { FactionList } from './components/FactionList'
-import { CouncilorList } from './components/CouncilorList'
-import { CouncilorProfile } from './components/CouncilorProfile'
+import { BillList } from './components/BillList'
+import { BillDetail } from './components/BillDetail'
+import { MemberProfile } from './components/MemberProfile'
 
 function App() {
   return (
@@ -26,11 +24,9 @@ function App() {
       <main className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Routes>
           <Route path="/" element={<TopicSearch />} />
-          <Route path="/topic/:topicId" element={<IssueList />} />
-          <Route path="/issue/:issueId" element={<SolutionList />} />
-          <Route path="/solution/:solutionId" element={<FactionList />} />
-          <Route path="/faction/:factionId" element={<CouncilorList />} />
-          <Route path="/councilor/:councilorId" element={<CouncilorProfile />} />
+          <Route path="/topic/:topicName" element={<BillList />} />
+          <Route path="/topic/:topicName/bill/:billId" element={<BillDetail />} />
+          <Route path="/member/:memberName" element={<MemberProfile />} />
         </Routes>
       </main>
 
@@ -50,5 +46,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </React.StrictMode>,
 )
-
-
