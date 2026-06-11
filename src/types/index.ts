@@ -13,6 +13,7 @@ export interface Bill {
   summary: string;
   topics: string[];
   proposal_reason: string;
+  source_file?: string;
   proponents_members?: string[];
   opponents_members?: string[];
   proponents_parties?: string[];

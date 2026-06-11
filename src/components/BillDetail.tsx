@@ -223,6 +223,13 @@ export function BillDetail() {
           </div>
         </>
       )}
+
+      {/* 出典ファイル */}
+      {bill.source_file && (
+        <p className="text-right text-xs text-gray-400">
+          出典: {bill.source_file}
+        </p>
+      )}
     </div>
   );
 }
