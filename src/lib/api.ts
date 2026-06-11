@@ -14,6 +14,7 @@ function normalizeBill(b: any): Bill {
     summary: b.summary ?? '',
     topics: b.topics ?? [],
     proposal_reason: b.proposal_reason ?? '',
+    source_file: b.source_file,
     proponents_members: b.proponents_members ?? [],
     opponents_members: b.opponents_members ?? [],
     proponents_parties: b.proponents_parties ?? [],

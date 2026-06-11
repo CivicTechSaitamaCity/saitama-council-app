@@ -48,6 +48,30 @@ src/
 ```
 
 ## 開発方法
+
+### Docker Compose を使う方法（推奨）
+
+Node.js 環境を用意しなくても Docker だけで動作確認できます。
+
+1. リポジトリをクローンします。
+   ```bash
+   git clone <リポジトリURL>
+   cd saitama-council-app
+   ```
+2. コンテナをビルドして起動します。
+   ```bash
+   docker compose up --build
+   ```
+3. ブラウザで `http://localhost:3000` を開き、アプリを確認します。
+4. 停止するには `Ctrl+C` を押し、コンテナを削除します。
+   ```bash
+   docker compose down
+   ```
+
+> **注意**: Dockerfile はマルチステージビルドになっており、Node.js でビルドした成果物を nginx で配信します。ソースを変更した場合は `--build` オプションを付けて再起動してください。
+
+### npm を使う方法
+
 1. リポジトリをクローンします。
    ```bash
    git clone <リポジトリURL>
@@ -60,7 +84,7 @@ src/
    ```bash
    npm run dev
    ```
-4. ブラウザで `http://localhost:3000` を開き、アプリを確認します。
+4. ブラウザで `http://localhost:5173` を開き、アプリを確認します。
 
 ## 貢献方法
 1. Issue を確認し、取り組みたいタスクを選択してください。
