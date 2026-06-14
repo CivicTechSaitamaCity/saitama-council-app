@@ -7,35 +7,35 @@ import { Badge } from './ui/badge';
 
 interface DummyMember {
   name: string;
-  faction: string;
+  ward: string;
 }
 
 const DUMMY_MEMBERS: DummyMember[] = [
-  { name: '佐藤 一郎', faction: '自由民主党' },
-  { name: '鈴木 花子', faction: '公明党' },
-  { name: '高橋 健太', faction: '日本共産党' },
-  { name: '田中 美咲', faction: '無所属' },
-  { name: '伊藤 大輔', faction: '自由民主党' },
-  { name: '渡辺 さくら', faction: '民主フォーラム' },
-  { name: '山本 翔太', faction: '公明党' },
-  { name: '中村 優子', faction: '自由民主党' },
-  { name: '小林 誠', faction: '日本共産党' },
-  { name: '加藤 真央', faction: '民主フォーラム' },
-  { name: '吉田 健一', faction: '無所属' },
-  { name: '山田 直樹', faction: '自由民主党' },
+  { name: '佐藤 一郎', ward: '大宮区' },
+  { name: '鈴木 花子', ward: '浦和区' },
+  { name: '高橋 健太', ward: '中央区' },
+  { name: '田中 美咲', ward: '西区' },
+  { name: '伊藤 大輔', ward: '北区' },
+  { name: '渡辺 さくら', ward: '見沼区' },
+  { name: '山本 翔太', ward: '桜区' },
+  { name: '中村 優子', ward: '南区' },
+  { name: '小林 誠', ward: '緑区' },
+  { name: '加藤 真央', ward: '岩槻区' },
+  { name: '吉田 健一', ward: '大宮区' },
+  { name: '山田 直樹', ward: '浦和区' },
 ];
 
 export function MemberSearch() {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
-  const [selectedFaction, setSelectedFaction] = useState<string | null>(null);
+  const [selectedWard, setSelectedWard] = useState<string | null>(null);
 
-  const factions = Array.from(new Set(DUMMY_MEMBERS.map((m) => m.faction)));
+  const wards = Array.from(new Set(DUMMY_MEMBERS.map((m) => m.ward)));
 
   const filtered = DUMMY_MEMBERS.filter((m) => {
     const matchesQuery = m.name.includes(query);
-    const matchesFaction = !selectedFaction || m.faction === selectedFaction;
-    return matchesQuery && matchesFaction;
+    const matchesWard = !selectedWard || m.ward === selectedWard;
+    return matchesQuery && matchesWard;
   });
 
   return (
@@ -51,29 +51,29 @@ export function MemberSearch() {
         />
       </div>
 
-      {/* 会派フィルター */}
+      {/* 活動区フィルター */}
       <div className="flex flex-wrap gap-2">
         <button
-          onClick={() => setSelectedFaction(null)}
+          onClick={() => setSelectedWard(null)}
           className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
-            selectedFaction === null
+            selectedWard === null
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
           すべて
         </button>
-        {factions.map((faction) => (
+        {wards.map((ward) => (
           <button
-            key={faction}
-            onClick={() => setSelectedFaction(selectedFaction === faction ? null : faction)}
+            key={ward}
+            onClick={() => setSelectedWard(selectedWard === ward ? null : ward)}
             className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
-              selectedFaction === faction
+              selectedWard === ward
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            {faction}
+            {ward}
           </button>
         ))}
       </div>
@@ -88,7 +88,7 @@ export function MemberSearch() {
             <CardHeader>
               <div className="flex items-start justify-between gap-2">
                 <CardTitle className="text-base">{member.name}</CardTitle>
-                <Badge variant="info" className="shrink-0">{member.faction}</Badge>
+                <Badge variant="info" className="shrink-0">{member.ward}</Badge>
               </div>
             </CardHeader>
           </Card>
