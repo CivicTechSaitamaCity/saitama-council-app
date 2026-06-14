@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Badge } from './ui/badge';
 import { fetchBillsByMember } from '../lib/api';
+import { DUMMY_MEMBERS } from '../lib/dummyMembers';
 import type { Bill } from '../types';
 
 export function MemberProfile() {
@@ -15,6 +16,7 @@ export function MemberProfile() {
   const [error, setError] = useState<string | null>(null);
 
   const decoded = memberName ? decodeURIComponent(memberName) : '';
+  const member = DUMMY_MEMBERS.find((m) => m.name === decoded);
 
   useEffect(() => {
     if (!decoded) return;
@@ -25,7 +27,7 @@ export function MemberProfile() {
   }, [decoded]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
           <ArrowLeft className="mr-1 h-4 w-4" />
@@ -33,6 +35,40 @@ export function MemberProfile() {
         </Button>
         <h2 className="text-xl font-bold text-gray-900">{decoded}</h2>
       </div>
+
+      {member && (
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between gap-2">
+              <CardTitle className="text-base">プロフィール</CardTitle>
+              <Badge variant="info" className="shrink-0">{member.ward}</Badge>
+            </div>
+            <CardDescription>{member.profile}</CardDescription>
+          </CardHeader>
+        </Card>
+      )}
+
+      {member && member.activities.length > 0 && (
+        <div className="space-y-3">
+          <h3 className="text-lg font-semibold text-gray-900">活動実績</h3>
+          <div className="space-y-3">
+            {member.activities.map((activity) => (
+              <Card key={`${activity.date}-${activity.title}`}>
+                <CardHeader>
+                  <CardTitle className="text-base">{activity.title}</CardTitle>
+                  <CardDescription>{activity.description}</CardDescription>
+                  <span className="mt-2 flex items-center gap-1 text-xs text-gray-500">
+                    <Calendar className="h-3 w-3" />
+                    {activity.date}
+                  </span>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <h3 className="text-lg font-semibold text-gray-900">関連する議案</h3>
 
       {loading && (
         <div className="py-12 text-center text-gray-500">読み込み中...</div>

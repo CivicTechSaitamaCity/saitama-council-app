@@ -4,26 +4,7 @@ import { Search } from 'lucide-react';
 import { Input } from './ui/input';
 import { Card, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-
-interface DummyMember {
-  name: string;
-  ward: string;
-}
-
-const DUMMY_MEMBERS: DummyMember[] = [
-  { name: '佐藤 一郎', ward: '大宮区' },
-  { name: '鈴木 花子', ward: '浦和区' },
-  { name: '高橋 健太', ward: '中央区' },
-  { name: '田中 美咲', ward: '西区' },
-  { name: '伊藤 大輔', ward: '北区' },
-  { name: '渡辺 さくら', ward: '見沼区' },
-  { name: '山本 翔太', ward: '桜区' },
-  { name: '中村 優子', ward: '南区' },
-  { name: '小林 誠', ward: '緑区' },
-  { name: '加藤 真央', ward: '岩槻区' },
-  { name: '吉田 健一', ward: '大宮区' },
-  { name: '山田 直樹', ward: '浦和区' },
-];
+import { DUMMY_MEMBERS } from '../lib/dummyMembers';
 
 export function MemberSearch() {
   const navigate = useNavigate();
