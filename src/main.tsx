@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './style.css'
-import { TopicSearch } from './components/TopicSearch'
+import { SearchTabs } from './components/SearchTabs'
 import { BillList } from './components/BillList'
 import { BillDetail } from './components/BillDetail'
 import { MemberProfile } from './components/MemberProfile'
@@ -23,7 +23,7 @@ function App() {
 
       <main className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Routes>
-          <Route path="/" element={<TopicSearch />} />
+          <Route path="/" element={<SearchTabs />} />
           <Route path="/topic/:topicName" element={<BillList />} />
           <Route path="/topic/:topicName/bill/:billId" element={<BillDetail />} />
           <Route path="/member/:memberName" element={<MemberProfile />} />
