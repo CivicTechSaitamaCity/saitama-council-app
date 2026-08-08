@@ -17,8 +17,19 @@ const SNS_FIELDS: { key: keyof Member; label: string }[] = [
   { key: 'tiktok', label: 'TikTok' },
 ];
 
+// 議員一覧(number)からの遷移と、議案の発言者・賛否リスト(name、スペースなし表記が混ざる)
+// からの遷移の両方を受けるため、番号一致 → 名前一致(スペース無視)の順で照合する。
+function findMember(members: Member[], memberId: string): Member | null {
+  const byNumber = members.find((m) => m.number === memberId);
+  if (byNumber) return byNumber;
+
+  const normalizedId = memberId.replace(/[\s　]+/g, '');
+  const byName = members.find((m) => m.name.replace(/[\s　]+/g, '') === normalizedId);
+  return byName ?? null;
+}
+
 export function MemberProfile() {
-  const { memberNumber } = useParams<{ memberNumber: string }>();
+  const { memberId } = useParams<{ memberId: string }>();
   const navigate = useNavigate();
 
   const [member, setMember] = useState<Member | null>(null);
@@ -29,15 +40,16 @@ export function MemberProfile() {
   const [billsLoading, setBillsLoading] = useState(false);
   const [billsError, setBillsError] = useState<string | null>(null);
 
+  const decodedMemberId = memberId ? decodeURIComponent(memberId) : '';
+
   useEffect(() => {
     fetchMembers()
       .then((res) => {
-        const found = res.members.find((m) => m.number === memberNumber) ?? null;
-        setMember(found);
+        setMember(findMember(res.members, decodedMemberId));
       })
       .catch((e: Error) => setMemberError(e.message))
       .finally(() => setMemberLoading(false));
-  }, [memberNumber]);
+  }, [decodedMemberId]);
 
   useEffect(() => {
     if (!member) return;
