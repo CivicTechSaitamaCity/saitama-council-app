@@ -23,3 +23,31 @@ export interface Bill {
 export interface ApiMinutesResponse {
   bills: Bill[];
 }
+
+export interface Member {
+  number: string;
+  name: string;
+  constituency: string;
+  contact_address: string;
+  phone_number: string;
+  faction: string;
+  terms_served: string;
+  website: string;
+  x_twitter: string;
+  instagram: string;
+  facebook: string;
+  youtube: string;
+  tiktok: string;
+  birth_year: string;
+  age_group: string;
+  activity_topics: string;
+  topic_sources: string;
+  notes: string;
+  intention_to_run_2027: string;
+}
+
+export interface ApiMembersResponse {
+  status: string;
+  count: number;
+  members: Member[];
+}
