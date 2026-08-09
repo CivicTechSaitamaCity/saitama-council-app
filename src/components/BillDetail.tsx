@@ -225,9 +225,9 @@ export function BillDetail() {
       )}
 
       {/* 出典ファイル */}
-      {bill.source_file && (
+      {bill.source_files && bill.source_files.length > 0 && (
         <p className="text-right text-xs text-gray-400">
-          出典: {bill.source_file}
+          出典: {bill.source_files.join('、')}
         </p>
       )}
     </div>

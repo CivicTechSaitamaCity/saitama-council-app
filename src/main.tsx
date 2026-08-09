@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<SearchTabs />} />
           <Route path="/topic/:topicName" element={<BillList />} />
           <Route path="/topic/:topicName/bill/:billId" element={<BillDetail />} />
-          <Route path="/member/:memberName" element={<MemberProfile />} />
+          <Route path="/member/:memberId" element={<MemberProfile />} />
         </Routes>
       </main>
 
