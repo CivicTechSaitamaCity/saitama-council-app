@@ -32,7 +32,7 @@ function App() {
 
       <footer className="mt-12 border-t bg-white py-6">
         <div className="container mx-auto px-4 text-center text-xs text-gray-600 sm:text-sm sm:px-6 lg:px-8">
-          © 2024 さいたま市議会議員活動検索システム
+          © 2026 さいたま市議会議員活動検索システム
         </div>
       </footer>
     </div>
